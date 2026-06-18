@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jahnavi Badam — Software Engineer</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: #12121a;
+            --border: #1f1f2e;
+            --text: #e4e4ed;
+            --text-dim: #8888a0;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --accent-glow: rgba(99, 102, 241, 0.15);
+            --green: #10b981;
+            --green-dim: rgba(16, 185, 129, 0.1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 4rem 0 3rem;
+        }
+
+        .hero-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #a855f7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 0 40px var(--accent-glow);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #e4e4ed, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .role {
+            font-size: 1.1rem;
+            color: var(--accent-light);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .tagline {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .hero-links a:hover {
+            border-color: var(--accent);
+            background: var(--accent-glow);
+            color: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        /* Section */
+        .section { margin-bottom: 3rem; }
+
+        .section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-light);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* Experience */
+        .experience-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .experience-card:hover { border-color: var(--accent); }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .exp-header h3 { font-size: 1.1rem; font-weight: 600; }
+        .exp-header .company { color: var(--accent-light); }
+
+        .exp-header .date {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            background: var(--accent-glow);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .exp-category {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--green);
+            margin: 1rem 0 0.5rem;
+        }
+
+        .exp-list { list-style: none; padding: 0; }
+
+        .exp-list li {
+            position: relative;
+            padding-left: 1rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        .exp-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: border-color 0.2s;
+        }
+
+        .skill-card:hover { border-color: var(--accent); }
+
+        .skill-card h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            margin-bottom: 0.6rem;
+        }
+
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+        .skill-tag {
+            padding: 0.3rem 0.6rem;
+            background: var(--accent-glow);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: var(--accent-light);
+        }
+
+        /* Projects */
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.2s;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.1);
+        }
+
+        .project-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+        .project-card p { font-size: 0.875rem; color: var(--text-dim); margin-bottom: 0.75rem; }
+
+        .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; }
+
+        .project-tag {
+            padding: 0.2rem 0.5rem;
+            background: var(--green-dim);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 4px;
+            font-size: 0.7rem;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--accent-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .project-link:hover { text-decoration: underline; }
+
+        /* Highlights */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .highlight-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .highlight-card .emoji { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .highlight-card .number { font-size: 1.5rem; font-weight: 800; color: var(--accent-light); }
+        .highlight-card .desc { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.25rem; }
+
+        /* Education */
+        .education-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .education-card h3 { font-size: 1rem; margin-bottom: 0.25rem; }
+        .education-card .school { color: var(--accent-light); font-size: 0.9rem; }
+        .education-card .details { font-size: 0.8rem; color: var(--text-dim); margin-top: 0.25rem; }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.75rem; }
+            .container { padding: 2rem 1rem; }
+            .highlights-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-avatar">JB</div>
+            <h1>Jahnavi Badam</h1>
+            <p class="role">Software Engineer @ NatWest Group</p>
+            <p class="tagline">Full-stack developer building enterprise platforms, observability solutions, and data-driven tooling in banking.</p>
+            <div class="hero-links">
+                <a href="https://github.com/jahnavibadam" target="_blank">⚡ GitHub</a>
+                <a href="https://github.com/jahnavibadam/payment-fraud-detection" target="_blank">🛡️ Fraud Detection Project</a>
+                <a href="mailto:jahnavibadam@gmail.com">✉️ Email</a>
+            </div>
+        </section>
+
+        <!-- Highlights -->
+        <section class="section">
+            <h2 class="section-title">Key Highlights</h2>
+            <div class="highlights-grid">
+                <div class="highlight-card">
+                    <div class="emoji">📊</div>
+                    <div class="number">300+</div>
+                    <div class="desc">Servers monitored with Splunk observability</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="emoji">🏗️</div>
+                    <div class="number">300+</div>
+                    <div class="desc">Resources managed via custom platform</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="emoji">📈</div>
+                    <div class="number">Leadership</div>
+                    <div class="desc">Dashboards used for strategic decisions</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="emoji">🔍</div>
+                    <div class="number">AIOps</div>
+                    <div class="desc">Log analysis for predictive monitoring</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section class="section">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-card">
+                <div class="exp-header">
+                    <h3>Software Engineer · <span class="company">NatWest Group</span></h3>
+                    <span class="date">July 2023 – Present</span>
+                </div>
+
+                <div class="exp-category">Full-Stack Development & Data Management</div>
+                <ul class="exp-list">
+                    <li>Designed and built an enterprise Resource Management Platform — single source of truth for 300+ resources spanning personnel, projects, and portfolios.</li>
+                    <li>Architected React.js frontend + Spring Boot microservices backend with full CRUD, RESTful APIs, and efficient data modelling.</li>
+                    <li>Centralised fragmented data sources into a unified, searchable platform, boosting cross-team operational efficiency.</li>
+                </ul>
+
+                <div class="exp-category">Platform Observability & Monitoring</div>
+                <ul class="exp-list">
+                    <li>Orchestrated Splunk Universal Forwarder upgrade across 300+ servers for uninterrupted log ingestion and compliance.</li>
+                    <li>Built advanced Splunk dashboards (SPL) monitoring real-time log data across ATM platform applications, reducing MTTR.</li>
+                    <li>Applied pattern recognition to log data for anomaly detection, laying groundwork for predictive monitoring and AIOps.</li>
+                </ul>
+
+                <div class="exp-category">Data Visualisation & Analytics</div>
+                <ul class="exp-list">
+                    <li>Designed Tableau reports delivering platform-wide analytical visibility across all ATM applications.</li>
+                    <li>Translated complex operational datasets into actionable visual narratives for capacity planning and performance benchmarking.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section class="section">
+            <h2 class="section-title">Featured Project</h2>
+            <div class="project-card">
+                <h3>🛡️ Payment Fraud Detection System</h3>
+                <p>Real-time fraud scoring engine for UK Faster Payments. Evaluates transactions across 6 risk dimensions — amount deviation, payee verification, behavioural patterns, channel risk, IP intelligence (VPN/TOR/geo), and payment purpose (scam keyword detection) — producing ALLOW/REVIEW/BLOCK decisions within 300ms.</p>
+                <div class="project-tags">
+                    <span class="project-tag">Java 17</span>
+                    <span class="project-tag">AWS Lambda</span>
+                    <span class="project-tag">DynamoDB</span>
+                    <span class="project-tag">EventBridge</span>
+                    <span class="project-tag">API Gateway</span>
+                    <span class="project-tag">Fraud Detection</span>
+                </div>
+                <a class="project-link" href="https://github.com/jahnavibadam/payment-fraud-detection" target="_blank">View on GitHub →</a>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h4>Languages</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Python</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h4>Frontend</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h4>Backend</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Microservices</span>
+                        <span class="skill-tag">AWS Lambda</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h4>Data & Analytics</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Splunk (SPL)</span>
+                        <span class="skill-tag">DynamoDB</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h4>Tools & Platforms</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Agile/Scrum</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">AWS</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h4>Exploring</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">scikit-learn</span>
+                        <span class="skill-tag">Azure</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="education-card">
+                <h3>B.Tech in Electrical & Electronics Engineering</h3>
+                <p class="school">PES University, Bangalore</p>
+                <p class="details">Minor in Computer Science & Engineering</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            Built with purpose · Jahnavi Badam · 2025
+        </footer>
+    </div>
+</body>
+</html>
