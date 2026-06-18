@@ -16,6 +16,8 @@
             --accent-glow: rgba(99, 102, 241, 0.15);
             --green: #10b981;
             --green-dim: rgba(16, 185, 129, 0.1);
+            --orange: #f59e0b;
+            --orange-dim: rgba(245, 158, 11, 0.1);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -88,7 +90,7 @@
         .hero .tagline {
             color: var(--text-dim);
             font-size: 0.95rem;
-            max-width: 500px;
+            max-width: 550px;
             margin: 0 auto 1.5rem;
         }
 
@@ -143,8 +145,8 @@
             background: var(--border);
         }
 
-        /* Experience */
-        .experience-card {
+        /* Cards */
+        .card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
@@ -153,8 +155,9 @@
             transition: border-color 0.2s;
         }
 
-        .experience-card:hover { border-color: var(--accent); }
+        .card:hover { border-color: var(--accent); }
 
+        /* Experience */
         .exp-header {
             display: flex;
             justify-content: space-between;
@@ -184,6 +187,8 @@
             margin: 1rem 0 0.5rem;
         }
 
+        .exp-category:first-of-type { margin-top: 0; }
+
         .exp-list { list-style: none; padding: 0; }
 
         .exp-list li {
@@ -201,6 +206,25 @@
             left: 0;
             color: var(--accent);
         }
+
+        /* Highlights */
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .highlight-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .highlight-card .emoji { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .highlight-card .number { font-size: 1.5rem; font-weight: 800; color: var(--accent-light); }
+        .highlight-card .desc { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.25rem; }
 
         /* Skills */
         .skills-grid {
@@ -254,8 +278,8 @@
             box-shadow: 0 8px 30px rgba(99, 102, 241, 0.1);
         }
 
-        .project-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
-        .project-card p { font-size: 0.875rem; color: var(--text-dim); margin-bottom: 0.75rem; }
+        .project-card h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+        .project-card p { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0.75rem; }
 
         .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; }
 
@@ -282,24 +306,41 @@
 
         .project-link:hover { text-decoration: underline; }
 
-        /* Highlights */
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .highlight-card {
+        /* Publication */
+        .pub-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
+            border-left: 3px solid var(--orange);
             border-radius: 12px;
-            padding: 1.25rem;
-            text-align: center;
+            padding: 1.5rem;
         }
 
-        .highlight-card .emoji { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .highlight-card .number { font-size: 1.5rem; font-weight: 800; color: var(--accent-light); }
-        .highlight-card .desc { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.25rem; }
+        .pub-card .pub-venue {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .pub-card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+
+        .pub-card .pub-authors {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-bottom: 0.5rem;
+        }
+
+        .pub-card .pub-doi {
+            font-size: 0.8rem;
+        }
+
+        .pub-card .pub-doi a {
+            color: var(--accent-light);
+            text-decoration: none;
+        }
+
+        .pub-card .pub-doi a:hover { text-decoration: underline; }
 
         /* Education */
         .education-card {
@@ -312,6 +353,37 @@
         .education-card h3 { font-size: 1rem; margin-bottom: 0.25rem; }
         .education-card .school { color: var(--accent-light); font-size: 0.9rem; }
         .education-card .details { font-size: 0.8rem; color: var(--text-dim); margin-top: 0.25rem; }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .contact-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+
+        .contact-item:hover { border-color: var(--accent); }
+        .contact-item .emoji { font-size: 1.25rem; margin-bottom: 0.4rem; }
+        .contact-item .label { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+
+        .contact-item a {
+            display: block;
+            color: var(--accent-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
+
+        .contact-item a:hover { text-decoration: underline; }
 
         /* Footer */
         .footer {
@@ -327,6 +399,7 @@
             .hero h1 { font-size: 1.75rem; }
             .container { padding: 2rem 1rem; }
             .highlights-grid { grid-template-columns: 1fr 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -337,88 +410,141 @@
             <div class="hero-avatar">JB</div>
             <h1>Jahnavi Badam</h1>
             <p class="role">Software Engineer @ NatWest Group</p>
-            <p class="tagline">Full-stack developer building enterprise platforms, observability solutions, and data-driven tooling in banking.</p>
+            <p class="tagline">Building enterprise platforms, observability solutions, and intelligent fraud detection systems in banking. PES University alum with a published IEEE research paper.</p>
             <div class="hero-links">
                 <a href="https://github.com/jahnavibadam" target="_blank">⚡ GitHub</a>
-                <a href="https://github.com/jahnavibadam/payment-fraud-detection" target="_blank">🛡️ Fraud Detection Project</a>
-                <a href="assets/Resume_JahnaviBadam.pdf" target="_blank">📄 Resume</a>
-                <a href="mailto:jahnavibadam@gmail.com">✉️ Email</a>
+                <a href="https://www.linkedin.com/in/jahnavibadam" target="_blank">💼 LinkedIn</a>
+                <a href="https://doi.org/10.1109/INDICON59947.2023.10440855" target="_blank">📑 IEEE Publication</a>
+                <a href="mailto:jahnavibadam@gmail.com">✉️ Contact</a>
             </div>
         </section>
 
         <!-- Highlights -->
         <section class="section">
-            <h2 class="section-title">Key Highlights</h2>
+            <h2 class="section-title">Impact at a Glance</h2>
             <div class="highlights-grid">
                 <div class="highlight-card">
                     <div class="emoji">📊</div>
                     <div class="number">300+</div>
-                    <div class="desc">Servers monitored with Splunk observability</div>
+                    <div class="desc">Servers monitored via Splunk</div>
                 </div>
                 <div class="highlight-card">
                     <div class="emoji">🏗️</div>
-                    <div class="number">300+</div>
-                    <div class="desc">Resources managed via custom platform</div>
+                    <div class="number">30%</div>
+                    <div class="desc">Improvement in resource efficiency</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="emoji">⚡</div>
+                    <div class="number">25%</div>
+                    <div class="desc">Reduction in manual effort</div>
                 </div>
                 <div class="highlight-card">
                     <div class="emoji">📈</div>
-                    <div class="number">Leadership</div>
-                    <div class="desc">Dashboards used for strategic decisions</div>
-                </div>
-                <div class="highlight-card">
-                    <div class="emoji">🔍</div>
-                    <div class="number">AIOps</div>
-                    <div class="desc">Log analysis for predictive monitoring</div>
+                    <div class="number">30%</div>
+                    <div class="desc">Faster report generation</div>
                 </div>
             </div>
         </section>
 
         <!-- Experience -->
         <section class="section">
-            <h2 class="section-title">Experience</h2>
-            <div class="experience-card">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="card">
                 <div class="exp-header">
                     <h3>Software Engineer · <span class="company">NatWest Group</span></h3>
                     <span class="date">July 2023 – Present</span>
                 </div>
 
-                <div class="exp-category">Full-Stack Development & Data Management</div>
+                <div class="exp-category">Full-Stack Development</div>
                 <ul class="exp-list">
-                    <li>Designed and built an enterprise Resource Management Platform — single source of truth for 300+ resources spanning personnel, projects, and portfolios.</li>
-                    <li>Architected React.js frontend + Spring Boot microservices backend with full CRUD, RESTful APIs, and efficient data modelling.</li>
-                    <li>Centralised fragmented data sources into a unified, searchable platform, boosting cross-team operational efficiency.</li>
+                    <li>Built a scalable Resource Management Tool using ReactJS + Spring Boot to track team resources, project portfolios, and allocations for 300+ employees.</li>
+                    <li>Improved resource efficiency by 30% and automated workflows cutting manual effort by 25%.</li>
+                    <li>Implemented real-time data visualisation and database integration for seamless tracking and reporting.</li>
                 </ul>
 
-                <div class="exp-category">Platform Observability & Monitoring</div>
+                <div class="exp-category">Platform Observability</div>
                 <ul class="exp-list">
-                    <li>Orchestrated Splunk Universal Forwarder upgrade across 300+ servers for uninterrupted log ingestion and compliance.</li>
-                    <li>Built advanced Splunk dashboards (SPL) monitoring real-time log data across ATM platform applications, reducing MTTR.</li>
-                    <li>Applied pattern recognition to log data for anomaly detection, laying groundwork for predictive monitoring and AIOps.</li>
+                    <li>Upgraded Splunk Universal Forwarder across 200+ test and production servers to v9.0.3, achieving 100% compliance.</li>
+                    <li>Improved log ingestion efficiency by 20%, minimising system downtime and enhancing monitoring reliability.</li>
+                    <li>Built advanced SPL dashboards for real-time monitoring across ATM platform applications.</li>
                 </ul>
 
                 <div class="exp-category">Data Visualisation & Analytics</div>
                 <ul class="exp-list">
-                    <li>Designed Tableau reports delivering platform-wide analytical visibility across all ATM applications.</li>
-                    <li>Translated complex operational datasets into actionable visual narratives for capacity planning and performance benchmarking.</li>
+                    <li>Designed interactive Tableau dashboards for production-level reporting, reducing report generation time by 30%.</li>
+                    <li>Enabled faster data-driven decision-making for a 50+ member team through actionable visual narratives.</li>
                 </ul>
             </div>
         </section>
 
         <!-- Projects -->
         <section class="section">
-            <h2 class="section-title">Featured Project</h2>
+            <h2 class="section-title">Projects</h2>
+
             <div class="project-card">
                 <h3>🛡️ Payment Fraud Detection System</h3>
-                <p>Real-time fraud scoring engine for UK Faster Payments. Evaluates transactions across 6 risk dimensions — amount deviation, payee verification, behavioural patterns, channel risk, IP intelligence (VPN/TOR/geo), and payment purpose (scam keyword detection) — producing ALLOW/REVIEW/BLOCK decisions within 300ms.</p>
+                <p>Real-time fraud scoring engine for UK Faster Payments. Evaluates transactions across 6 risk dimensions — amount deviation, payee verification, behavioural patterns, channel risk, IP intelligence (VPN/TOR/geo/velocity), and payment purpose (scam keyword detection) — producing ALLOW/REVIEW/BLOCK decisions within 300ms.</p>
                 <div class="project-tags">
                     <span class="project-tag">Java 17</span>
                     <span class="project-tag">AWS Lambda</span>
                     <span class="project-tag">DynamoDB</span>
                     <span class="project-tag">EventBridge</span>
                     <span class="project-tag">API Gateway</span>
-                    <span class="project-tag">Fraud Detection</span>
                 </div>
                 <a class="project-link" href="https://github.com/jahnavibadam/payment-fraud-detection" target="_blank">View on GitHub →</a>
+            </div>
+
+            <div class="project-card">
+                <h3>📡 Power Control in Wireless Channels using DNNs</h3>
+                <p>Deep learning-based power control model for wireless interference channels with imperfect CSI, achieving up to 95% of optimal sum spectral efficiency using an ensemble of 5 neural networks trained over 4,000 epochs.</p>
+                <div class="project-tags">
+                    <span class="project-tag">Python</span>
+                    <span class="project-tag">TensorFlow</span>
+                    <span class="project-tag">Keras</span>
+                    <span class="project-tag">NumPy</span>
+                    <span class="project-tag">Deep Learning</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>🔢 AutoEncoder for Image Denoising</h3>
+                <p>Designed an AutoEncoder model using PyTorch achieving 30% noise reduction for handwritten digits and 25% improvement in recognition accuracy.</p>
+                <div class="project-tags">
+                    <span class="project-tag">PyTorch</span>
+                    <span class="project-tag">Computer Vision</span>
+                    <span class="project-tag">Deep Learning</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>💊 Pharmacy Database Management System</h3>
+                <p>Full-stack system with CRUD functionality, integrating a user-friendly frontend with Python and PostgreSQL backend for streamlined pharmaceutical record-keeping.</p>
+                <div class="project-tags">
+                    <span class="project-tag">Python</span>
+                    <span class="project-tag">PostgreSQL</span>
+                    <span class="project-tag">Full-Stack</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>⚡ Fault Analysis of DC Renewable Microgrids</h3>
+                <p>Engineered detection algorithms using MATLAB and Simulink comparing six ML models, achieving 92% average accuracy in diagnosing faults and reducing downtime during testing phases.</p>
+                <div class="project-tags">
+                    <span class="project-tag">MATLAB</span>
+                    <span class="project-tag">Simulink</span>
+                    <span class="project-tag">Machine Learning</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publication -->
+        <section class="section">
+            <h2 class="section-title">Publication</h2>
+            <div class="pub-card">
+                <div class="pub-venue">IEEE INDICON 2023 · Hyderabad, India</div>
+                <h3>Centralized Power Control In Wireless Interference Channel with Imperfect CSI</h3>
+                <p class="pub-authors">A. Singh, A. N. Manapure, M. Kaur, <strong>J. Badam</strong> and A. Thakre</p>
+                <p class="pub-doi">DOI: <a href="https://doi.org/10.1109/INDICON59947.2023.10440855" target="_blank">10.1109/INDICON59947.2023.10440855</a></p>
             </div>
         </section>
 
@@ -430,9 +556,10 @@
                     <h4>Languages</h4>
                     <div class="skill-tags">
                         <span class="skill-tag">Java</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">SQL</span>
                         <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">SQL</span>
                     </div>
                 </div>
                 <div class="skill-card">
@@ -441,15 +568,25 @@
                         <span class="skill-tag">React.js</span>
                         <span class="skill-tag">HTML5</span>
                         <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">Bootstrap</span>
                     </div>
                 </div>
                 <div class="skill-card">
                     <h4>Backend</h4>
                     <div class="skill-tags">
                         <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">Node.js</span>
                         <span class="skill-tag">REST APIs</span>
                         <span class="skill-tag">Microservices</span>
-                        <span class="skill-tag">AWS Lambda</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h4>Databases</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">DynamoDB</span>
                     </div>
                 </div>
                 <div class="skill-card">
@@ -457,25 +594,16 @@
                     <div class="skill-tags">
                         <span class="skill-tag">Tableau</span>
                         <span class="skill-tag">Splunk (SPL)</span>
-                        <span class="skill-tag">DynamoDB</span>
+                        <span class="skill-tag">MATLAB</span>
                     </div>
                 </div>
                 <div class="skill-card">
-                    <h4>Tools & Platforms</h4>
+                    <h4>ML & Cloud</h4>
                     <div class="skill-tags">
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">Agile/Scrum</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">AWS</span>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <h4>Exploring</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Machine Learning</span>
                         <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
                         <span class="skill-tag">scikit-learn</span>
-                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">AWS</span>
                     </div>
                 </div>
             </div>
@@ -487,7 +615,34 @@
             <div class="education-card">
                 <h3>B.Tech in Electrical & Electronics Engineering</h3>
                 <p class="school">PES University, Bangalore</p>
-                <p class="details">Minor in Computer Science & Engineering</p>
+                <p class="details">Minor in Computer Science Engineering · 2019 – 2023</p>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="section">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="emoji">✉️</div>
+                    <div class="label">Email</div>
+                    <a href="mailto:jahnavibadam@gmail.com">jahnavibadam@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <div class="emoji">📱</div>
+                    <div class="label">Phone</div>
+                    <a href="tel:+918660119121">+91 8660119121</a>
+                </div>
+                <div class="contact-item">
+                    <div class="emoji">💼</div>
+                    <div class="label">LinkedIn</div>
+                    <a href="https://www.linkedin.com/in/jahnavibadam" target="_blank">linkedin.com/in/jahnavibadam</a>
+                </div>
+                <div class="contact-item">
+                    <div class="emoji">⚡</div>
+                    <div class="label">GitHub</div>
+                    <a href="https://github.com/jahnavibadam" target="_blank">github.com/jahnavibadam</a>
+                </div>
             </div>
         </section>
 
