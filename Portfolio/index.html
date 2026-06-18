@@ -392,7 +392,7 @@
             margin-top: 2rem;
         }
 
-        /* Dot Nav */
+        /* Dot Nav - desktop */
         .dot-nav {
             position: fixed;
             right: 1.5rem;
@@ -439,12 +439,66 @@
             opacity: 1;
         }
 
-        @media (max-width: 600px) {
+        /* Mobile nav button */
+        .mobile-nav-btn {
+            display: none;
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            z-index: 200;
+            box-shadow: 0 4px 15px rgba(184, 134, 11, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .mobile-nav-btn:active { transform: scale(0.9); }
+
+        .mobile-nav-panel {
+            display: none;
+            position: fixed;
+            bottom: 5rem;
+            right: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.5rem;
+            z-index: 200;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            flex-direction: column;
+        }
+
+        .mobile-nav-panel.open { display: flex; }
+
+        .mobile-nav-panel a {
+            display: block;
+            padding: 0.6rem 1rem;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: background 0.15s;
+        }
+
+        .mobile-nav-panel a:hover {
+            background: var(--accent-glow);
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
             .hero h1 { font-size: 1.75rem; }
             .container { padding: 2rem 1rem; }
             .highlights-grid { grid-template-columns: 1fr 1fr; }
             .contact-grid { grid-template-columns: 1fr; }
             .dot-nav { display: none; }
+            .mobile-nav-btn { display: flex; align-items: center; justify-content: center; }
         }
     </style>
 </head>
@@ -654,7 +708,7 @@
             © 2026 Jahnavi Badam. All rights reserved.
         </footer>
     </div>
-    <!-- Dot Nav -->
+    <!-- Dot Nav (desktop) -->
     <nav class="dot-nav">
         <a href="#experience" data-label="Experience"></a>
         <a href="#projects" data-label="Projects"></a>
@@ -664,8 +718,20 @@
         <a href="#contact" data-label="Contact"></a>
     </nav>
 
+    <!-- Mobile Nav -->
+    <button class="mobile-nav-btn" id="mobile-nav-btn" aria-label="Navigate">☰</button>
+    <nav class="mobile-nav-panel" id="mobile-nav-panel">
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#publication">Publication</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
     <script>
         (function() {
+            // Desktop dot nav scroll tracking
             var dots = document.querySelectorAll('.dot-nav a');
             var sections = document.querySelectorAll('.section[id]');
 
@@ -682,8 +748,25 @@
             dots.forEach(function(dot) {
                 dot.addEventListener('click', function(e) {
                     e.preventDefault();
-                    var target = document.querySelector(this.getAttribute('href'));
-                    target.scrollIntoView({ behavior: 'smooth' });
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            // Mobile nav toggle
+            var btn = document.getElementById('mobile-nav-btn');
+            var panel = document.getElementById('mobile-nav-panel');
+
+            btn.addEventListener('click', function() {
+                panel.classList.toggle('open');
+                btn.textContent = panel.classList.contains('open') ? '✕' : '☰';
+            });
+
+            panel.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    panel.classList.remove('open');
+                    btn.textContent = '☰';
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
                 });
             });
         })();
